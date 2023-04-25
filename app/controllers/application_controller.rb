@@ -22,8 +22,8 @@ class ApplicationController < Sinatra::Base
 
   post '/comments' do
     comment = Comment.create(
-      name: params[:name]
-      comment: params[:comment]
+      name: params[:name],
+      comment: params[:comment],
       post_id: params[:post_id]
     )
     comment.to_json
@@ -41,9 +41,7 @@ class ApplicationController < Sinatra::Base
 
   patch '/comments/:id' do
     comment = Comment.find(params[:id])
-    comment.update(
-      comment: params[:comment]
-    )
+    comment.update(comment: params[:comment])
     comment.to_json
   end
 
