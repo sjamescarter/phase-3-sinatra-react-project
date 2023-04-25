@@ -20,6 +20,15 @@ class ApplicationController < Sinatra::Base
     blog_post.to_json
   end
 
+  post '/comments' do
+    comment = Comment.create(
+      name: params[:name]
+      comment: params[:comment]
+      post_id: params[:post_id]
+    )
+    comment.to_json
+  end
+
   patch '/posts/:id' do
     blog_post = Post.find(params[:id])
     blog_post.update(
@@ -30,9 +39,23 @@ class ApplicationController < Sinatra::Base
     blog_post.to_json
   end
 
+  patch '/comments/:id' do
+    comment = Comment.find(params[:id])
+    comment.update(
+      comment: params[:comment]
+    )
+    comment.to_json
+  end
+
   delete '/posts/:id' do
     blog_post = Post.find(params[:id])
     blog_post.destoy
     blog_post.to_json
+  end
+
+  delete '/comments/:id' do
+    comment = Comment.find(params[:id])
+    comment.destoy
+    comment.to_json
   end
 end
