@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/posts/:id' do
-    post = Posts.find(params[:id])
+    post = Post.find(params[:id])
     post.to_json(include: :comments)
   end
 
@@ -47,13 +47,13 @@ class ApplicationController < Sinatra::Base
 
   delete '/posts/:id' do
     blog_post = Post.find(params[:id])
-    blog_post.destoy
+    blog_post.destroy
     blog_post.to_json
   end
 
   delete '/comments/:id' do
     comment = Comment.find(params[:id])
-    comment.destoy
+    comment.destroy
     comment.to_json
   end
 end
