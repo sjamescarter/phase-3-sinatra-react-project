@@ -2,7 +2,7 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   get "/posts" do
-    posts = Post.all.order(created_at: :desc)
+    posts = Post.all.newest
     posts.to_json
   end
 
