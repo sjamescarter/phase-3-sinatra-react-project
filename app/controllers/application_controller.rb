@@ -3,12 +3,7 @@ class ApplicationController < Sinatra::Base
   
   get "/posts" do
     posts = Post.all.newest
-    posts.to_json
-  end
-
-  get '/posts/:id' do
-    post = Post.find(params[:id])
-    post.to_json(include: :comments)
+    posts.to_json(include: :comments)
   end
 
   post '/posts' do
@@ -37,12 +32,6 @@ class ApplicationController < Sinatra::Base
       body: params[:body]
     )
     blog_post.to_json
-  end
-
-  patch '/comments/:id' do
-    comment = Comment.find(params[:id])
-    comment.update(comment: params[:comment])
-    comment.to_json
   end
 
   delete '/posts/:id' do
