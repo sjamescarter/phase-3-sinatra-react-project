@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
       title: params[:title],
       body: params[:body]
     )
-    blog_post.to_json
+    blog_post.to_json(include: :comments)
   end
 
   post '/comments' do
